@@ -1,0 +1,34 @@
+-# -if Rails::VERSION::MAJOR >= 5 && Rails::VERSION::MINOR >= 1
+-# = form_with model: [@material.project, @material] do |f|
+-# -else
+= form_for [@material.project, @material] do |f|
+  -if @material.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@material.errors.count, "error")} prohibited this material from being saved:"
+      %ul
+        - @material.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :purchase_date
+    = f.date_select :purchase_date
+  .field
+    = f.label :per_unit_price
+    = f.text_field :per_unit_price
+  .field
+    = f.label :quantity
+    = f.number_field :quantity
+  .field
+    = f.label :total_cost
+    = f.number_field :total_cost
+  .field
+    = f.label :category
+    = f.text_field :category
+  -# .field
+  -#   = f.label :project
+  -#   = f.text_field :project
+  .actions
+    = f.submit 'Save'

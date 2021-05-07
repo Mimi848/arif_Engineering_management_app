@@ -1,0 +1,22 @@
+-# -if Rails::VERSION::MAJOR >= 5 && Rails::VERSION::MINOR >= 1
+-# = form_with model: [@labour.project, @labour] do |f|
+-# -else
+= form_for [@labour.project, @labour] do |f|
+  -if @labour.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@labour.errors.count, "error")} prohibited this labour from being saved:"
+      %ul
+        - @labour.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :weekend_date
+    = f.date_select :weekend_date
+  .field
+    = f.label :weekly_expense
+    = f.number_field :weekly_expense
+  -# .field
+  -#   = f.label :project
+  -#   = f.text_field :project
+  .actions
+    = f.submit 'Save'

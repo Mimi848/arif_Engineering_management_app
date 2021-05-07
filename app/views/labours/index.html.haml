@@ -1,0 +1,23 @@
+%h1 Listing labours
+
+%table
+  %tr
+    %th Weekend date
+    %th Weekly expense
+    %th Project
+    %th
+    %th
+    %th
+
+  - @labours.each do |labour|
+    %tr
+      %td= labour.weekend_date
+      %td= labour.weekly_expense
+      -# %td= labour.project
+      %td= link_to 'Show', [labour.project, labour]
+      %td= link_to 'Edit', edit_project_labour_path(labour.project, labour)
+      %td= link_to 'Destroy', [labour.project, labour], data: { confirm: 'Are you sure?' }, method: :delete
+
+%br
+
+= link_to 'New Labour', new_project_labour_path(params[:project_id])

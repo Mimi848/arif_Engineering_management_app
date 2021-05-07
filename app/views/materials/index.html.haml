@@ -1,0 +1,31 @@
+%h1 Listing materials
+
+%table
+  %tr
+    %th Name
+    %th Purchase date
+    %th Per unit price
+    %th Quantity
+    %th Total cost
+    %th Category
+    -# %th Project
+    %th
+    %th
+    %th
+
+  - @materials.each do |material|
+    %tr
+      %td= material.name
+      %td= material.purchase_date
+      %td= material.per_unit_price
+      %td= material.quantity
+      %td= material.total_cost
+      %td= material.category
+      -# %td= material.project
+      %td= link_to 'Show', [material.project, material]
+      %td= link_to 'Edit', edit_project_material_path(material.project, material)
+      %td= link_to 'Destroy', [material.project, material], data: { confirm: 'Are you sure?' }, method: :delete
+
+%br
+
+= link_to 'New Material', new_project_material_path(params[:project_id])

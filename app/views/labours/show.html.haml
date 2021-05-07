@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Weekend date:
+  = @labour.weekend_date
+%p
+  %b Weekly expense:
+  = @labour.weekly_expense
+-# %p
+-#   %b Project:
+-#   = @labour.project
+
+= link_to 'Edit', edit_project_labour_path(@labour.project, @labour)
+\|
+= link_to 'Back', project_labours_path(@labour.project)

@@ -1,0 +1,7 @@
+%h1 Editing material
+
+= render 'form'
+
+= link_to 'Show', [@material.project, @material]
+\|
+= link_to 'Back', project_materials_path(@material.project)

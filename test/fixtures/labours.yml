@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  weekend_date: 2021-05-07
+  weekly_expense: 1
+  project: one
+
+two:
+  weekend_date: 2021-05-07
+  weekly_expense: 1
+  project: two

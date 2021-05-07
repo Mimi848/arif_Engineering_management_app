@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @material.name
+%p
+  %b Purchase date:
+  = @material.purchase_date
+%p
+  %b Per unit price:
+  = @material.per_unit_price
+%p
+  %b Quantity:
+  = @material.quantity
+%p
+  %b Total cost:
+  = @material.total_cost
+%p
+  %b Category:
+  = @material.category
+-# %p
+-#   %b Project:
+-#   = @material.project
+
+= link_to 'Edit', edit_project_material_path(@material.project, @material)
+\|
+= link_to 'Back', project_materials_path(@material.project)
