@@ -7,25 +7,25 @@
           %li= message
 
   .form-group
-    = f.label :name
+    = f.label :name, "نام"
     = f.text_field :name, required: true, class: "form-control"
   .form-group
-    = f.label :address
+    = f.label :address, "ایڈریس"
     = f.text_field :address, required: true, class: "form-control"
   .form-group
-    = f.label :started_on
+    = f.label :started_on, "تاریخ شروعات"
     = f.date_select :started_on, {order: [ :day, :month, :year], end_year: Date.today.year}, {required: true}
   -# .form-group
   -#   = f.label :completed_on
   -#   = f.date_select :completed_on, {order: [ :day, :month, :year], end_year: Date.today.year - 10}, {required: true}
   .form-group
-    = f.label :finished
+    = f.label :finished, "ختم"
     = f.check_box :finished, class: "form-check-label"
   .form-group
-    = f.label :owner_name
+    = f.label :owner_name, "کلائنٹ کا نام"
     = f.text_field :owner_name, class: "form-control"
   .form-group
-    = f.label :size
+    = f.label :size, "رقبہ"
     = f.text_field :size, class: "form-control"
   .actions
     = f.submit class: "btn btn-success" do

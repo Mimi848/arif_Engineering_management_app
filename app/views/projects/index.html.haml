@@ -6,7 +6,7 @@
       = link_to new_project_path, class: "btn btn-primary" do
         %i.fa.fa-plus
 
-    Ongoing Projects:
+    جاری سائٹ:
     - @projects.each do |project|
       -if !project.finished
         =link_to project do
@@ -14,12 +14,14 @@
             .card-body
               %h4.card-title
                 = project.name
-              %p
+              %p.d-inline
                 = project.address
+              %footer.blockquote-footer
+                ( #{project.size} )
 
 .card
   .card-body
-    Finished Projects:
+    ختم سائٹ:
     - @projects.each do |project|
       -if project.finished
         =link_to project do

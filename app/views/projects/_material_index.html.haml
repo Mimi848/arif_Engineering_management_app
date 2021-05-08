@@ -1,8 +1,8 @@
 .col-sm
-  %h4.font-weight-bold Materials
+  %h4.font-weight-bold مٹیریل
   .btn.btn-link.d-inline
     = link_to :sort_material => "id" do
-      %i.fa.fa-hourglass
+      %i.fa.fa-history
   .btn.btn-link.d-inline
     = link_to :sort_material_order => @sort_material_order == "ASC" ? "DESC" : "ASC" do
       -if @sort_material_order == "ASC"
@@ -13,12 +13,12 @@
   %form.d-inline{:action => '', :method => 'get'}
     = select_tag :filter_name, options_for_select(Material::MATERIAL_OPTIONS, params[:filter_name]), onchange: "this.form.submit();"
   .btn.btn-link.d-inline
-    = link_to "clear filter" , :filter_clear => ""
+    = link_to "سارے دکھاو" , :filter_clear => ""
   %table.table.border
     %tr
-      %th= link_to "Name" , :sort_material => "name"
-      %th= link_to "Quantity" , :sort_material => "quantity"
-      %th= link_to "Cost" , :sort_material => "total_cost"
+      %th= link_to "نام" , :sort_material => "name"
+      %th= link_to "مقدار" , :sort_material => "quantity"
+      %th= link_to "کل لاگت" , :sort_material => "total_cost"
       %th
 
     - if params[:filter_name]
@@ -51,13 +51,13 @@
               %i.fa.fa-eye
             = link_to edit_project_material_path(material.project, material), class: "btn btn-warning mr-2" do
               %i.fa.fa-edit
-            = link_to [material.project, material], data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-danger" do
+            = link_to [material.project, material], data: { confirm: 'ڈیلیٹ کردیں ?' }, method: :delete, class: "btn btn-danger" do
               %i.fa.fa-trash
 
   - if params[:filter_name]
-    %h4 Total #{params[:filter_name]} Sum: #{@project.materials.where(name: params[:filter_name]).sum(:total_cost)}/-
+    %h4 کل #{params[:filter_name]} خرچہ: -/#{@project.materials.where(name: params[:filter_name]).sum(:total_cost)}
   - else
-    %h4 Total Material Sum: #{@project.materials.sum(:total_cost)}/-
+    %h4 کل مٹیریل خرچہ: -/#{@project.materials.sum(:total_cost)}
   %br
   = link_to new_project_material_path(@project), class: "btn btn-primary" do
     %i.fa.fa-plus

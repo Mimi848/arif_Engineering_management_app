@@ -7,10 +7,10 @@
           %li= msg
 
   .form-group
-    = f.label :weekend_date
+    = f.label :weekend_date, "ہفتہ وار تاریخ"
     = f.date_select :weekend_date
   .form-group
-    = f.label :weekly_expense
+    = f.label :weekly_expense, "ہفتاور خرچہ"
     = f.number_field :weekly_expense, required: true, class: "form-control"
 
   .actions

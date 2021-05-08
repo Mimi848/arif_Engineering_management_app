@@ -1,17 +1,25 @@
+$primary: #829079;
+$secondary: #ede6b9;
+$table: #b9925e;
+
 body {
-  background: #f6ead4;
+  background: $primary;
   table {
-    background-color: #a2a595;
+    background-color: $table;
+  }
+  a {
+    color: #000;
   }
 }
 
 .card {
-  background-color: #b4a284;
+  background-color: $secondary;
 }
 
 select {
   width: 150px;
-  border: 1px solid #a2a595;
+  border: 1px solid #000;
+  background-color: $table;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;

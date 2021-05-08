@@ -1,22 +1,22 @@
 .card
   .card-body
     %p
-      %b Name:
+      %b نام:
       = @material.name
     %p
-      %b Purchase date:
+      %b خریداری کی تاریخ:
       = @material.purchase_date
     %p
-      %b Per unit price:
+      %b فی آئٹم لاگت:
       = @material.per_unit_price
     %p
-      %b Quantity:
+      %b مقدار:
       = @material.quantity
     %p
-      %b Total cost:
+      %b لاگت:
       = @material.quantity * @material.per_unit_price
     %p
-      %b Category:
+      %b شے کا نام:
       = @material.category
 
   = link_to edit_project_material_path(@material.project, @material), class: "btn btn-warning" do

@@ -11,21 +11,22 @@
           %i.fa.fa-edit
         = link_to @project, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" do
           %i.fa.fa-trash
-    %p
-      %b Address:
-      = @project.address
-    %p
-      %b Starting Date:
-      = @project.started_on
-    %p
-      %b Owner name:
-      = @project.owner_name
-    %p
-      %b Size:
-      = @project.size
-    %p
-      %b Total Expense:
-      #{@project.total_expense}/-
+    .text-right
+      %p
+        %b Address :
+        = @project.address
+      %p
+        %b تاریخ شروعات:
+        = @project.started_on
+      %p
+        %b کلائنٹ کا نام:
+        = @project.owner_name
+      %h4
+        %b مکمل خرچہ: -/
+        #{@project.total_expense}
+      %p
+        %b size:
+        = @project.size
     %hr/
     .container
       .row

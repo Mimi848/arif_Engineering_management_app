@@ -7,19 +7,19 @@
           %li= msg
 
   .form-group
-    = f.label :name
+    = f.label :name, "نام"
     = f.select :name, Material::MATERIAL_OPTIONS, required: true, class: "form-control"
   .form-group
-    = f.label :purchase_date
+    = f.label :purchase_date, "خریداری کی تاریخ"
     = f.date_select :purchase_date
   .form-group
-    = f.label :per_unit_price
+    = f.label :per_unit_price, "فی آئٹم لاگت"
     = f.text_field :per_unit_price, required: true, class: "form-control"
   .form-group
-    = f.label :quantity
+    = f.label :quantity, "مقدار"
     = f.number_field :quantity, required: true, class: "form-control"
   .form-group
-    = f.label :category
+    = f.label :category, "شے کا نام"
     = f.text_field :category
 
   .actions

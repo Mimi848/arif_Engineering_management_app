@@ -1,10 +1,10 @@
 .card
   .card-body
     %p
-      %b Weekend date:
+      %b ہفتہ وار تاریخ:
       = @labour.weekend_date
     %p
-      %b Weekly expense:
+      %b ہفتاور خرچہ:
       = @labour.weekly_expense
 
   = link_to edit_project_labour_path(@labour.project, @labour), class: "btn btn-warning" do
