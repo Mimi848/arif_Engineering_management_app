@@ -25,7 +25,7 @@ class LaboursController < ApplicationController
     @labour = @project.labours.build(labour_params)
 
     if @labour.save
-      redirect_to([@labour.project, @labour], notice: 'Labour was successfully created.')
+      redirect_to(@labour.project)
     else
       render action: 'new'
     end
@@ -34,7 +34,7 @@ class LaboursController < ApplicationController
   # PUT projects/1/labours/1
   def update
     if @labour.update_attributes(labour_params)
-      redirect_to([@labour.project, @labour], notice: 'Labour was successfully updated.')
+      redirect_to(@labour.project)
     else
       render action: 'edit'
     end
@@ -44,7 +44,7 @@ class LaboursController < ApplicationController
   def destroy
     @labour.destroy
 
-    redirect_to project_labours_url(@project)
+    redirect_to @project
   end
 
   private

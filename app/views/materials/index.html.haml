@@ -19,7 +19,7 @@
       %td= material.purchase_date
       %td= material.per_unit_price
       %td= material.quantity
-      %td= material.total_cost
+      %td= material.quantity * material.per_unit_price
       %td= material.category
       -# %td= material.project
       %td= link_to 'Show', [material.project, material]

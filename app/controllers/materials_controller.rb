@@ -25,7 +25,7 @@ class MaterialsController < ApplicationController
     @material = @project.materials.build(material_params)
 
     if @material.save
-      redirect_to([@material.project, @material], notice: 'Material was successfully created.')
+      redirect_to(@material.project)
     else
       render action: 'new'
     end
@@ -34,7 +34,7 @@ class MaterialsController < ApplicationController
   # PUT projects/1/materials/1
   def update
     if @material.update_attributes(material_params)
-      redirect_to([@material.project, @material], notice: 'Material was successfully updated.')
+      redirect_to(@material.project)
     else
       render action: 'edit'
     end
@@ -44,7 +44,7 @@ class MaterialsController < ApplicationController
   def destroy
     @material.destroy
 
-    redirect_to project_materials_url(@project)
+    redirect_to @project
   end
 
   private

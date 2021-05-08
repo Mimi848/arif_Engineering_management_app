@@ -14,7 +14,7 @@
   = @material.quantity
 %p
   %b Total cost:
-  = @material.total_cost
+  = @material.quantity * @material.per_unit_price
 %p
   %b Category:
   = @material.category
@@ -24,4 +24,4 @@
 
 = link_to 'Edit', edit_project_material_path(@material.project, @material)
 \|
-= link_to 'Back', project_materials_path(@material.project)
+= link_to 'Back',  project_path(@material.project)
