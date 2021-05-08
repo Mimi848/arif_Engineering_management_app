@@ -6,26 +6,27 @@
         - @project.errors.full_messages.each do |message|
           %li= message
 
-  .field
+  .form-group
     = f.label :name
-    = f.text_field :name
-  .field
+    = f.text_field :name, required: true, class: "form-control"
+  .form-group
     = f.label :address
-    = f.text_field :address
-  .field
+    = f.text_field :address, required: true, class: "form-control"
+  .form-group
     = f.label :started_on
-    = f.date_select :started_on
-  .field
-    = f.label :completed_on
-    = f.date_select :completed_on
-  .field
+    = f.date_select :started_on, {order: [ :day, :month, :year], end_year: Date.today.year}, {required: true}
+  -# .form-group
+  -#   = f.label :completed_on
+  -#   = f.date_select :completed_on, {order: [ :day, :month, :year], end_year: Date.today.year - 10}, {required: true}
+  .form-group
     = f.label :finished
-    = f.check_box :finished
-  .field
+    = f.check_box :finished, class: "form-check-label"
+  .form-group
     = f.label :owner_name
-    = f.text_field :owner_name
-  .field
+    = f.text_field :owner_name, class: "form-control"
+  .form-group
     = f.label :size
-    = f.text_field :size
+    = f.text_field :size, class: "form-control"
   .actions
-    = f.submit 'Save'
+    = f.submit class: "btn btn-success" do
+      %i.fa.fa-Save

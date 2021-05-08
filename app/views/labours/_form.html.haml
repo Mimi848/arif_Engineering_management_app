@@ -1,6 +1,3 @@
--# -if Rails::VERSION::MAJOR >= 5 && Rails::VERSION::MINOR >= 1
--# = form_with model: [@labour.project, @labour] do |f|
--# -else
 = form_for [@labour.project, @labour] do |f|
   -if @labour.errors.any?
     #error_explanation
@@ -9,14 +6,13 @@
         - @labour.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
+  .form-group
     = f.label :weekend_date
     = f.date_select :weekend_date
-  .field
+  .form-group
     = f.label :weekly_expense
-    = f.number_field :weekly_expense
-  -# .field
-  -#   = f.label :project
-  -#   = f.text_field :project
+    = f.number_field :weekly_expense, required: true, class: "form-control"
+
   .actions
-    = f.submit 'Save'
+    = f.submit class: "btn btn-success" do
+      %i.fa.fa-save

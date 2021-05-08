@@ -1,27 +1,26 @@
-%p#notice= notice
+.card
+  .card-body
+    %p
+      %b Name:
+      = @material.name
+    %p
+      %b Purchase date:
+      = @material.purchase_date
+    %p
+      %b Per unit price:
+      = @material.per_unit_price
+    %p
+      %b Quantity:
+      = @material.quantity
+    %p
+      %b Total cost:
+      = @material.quantity * @material.per_unit_price
+    %p
+      %b Category:
+      = @material.category
 
-%p
-  %b Name:
-  = @material.name
-%p
-  %b Purchase date:
-  = @material.purchase_date
-%p
-  %b Per unit price:
-  = @material.per_unit_price
-%p
-  %b Quantity:
-  = @material.quantity
-%p
-  %b Total cost:
-  = @material.quantity * @material.per_unit_price
-%p
-  %b Category:
-  = @material.category
--# %p
--#   %b Project:
--#   = @material.project
+  = link_to edit_project_material_path(@material.project, @material), class: "btn btn-warning" do
+    %i.fa.fa-edit
 
-= link_to 'Edit', edit_project_material_path(@material.project, @material)
-\|
-= link_to 'Back',  project_path(@material.project)
+  = link_to  project_path(@material.project), class: "btn btn-primary" do
+    %i.fa.fa-arrow-left

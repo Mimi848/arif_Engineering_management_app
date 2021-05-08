@@ -9,6 +9,11 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1 or /projects/1.json
   def show
+    @sort_material =  params[:sort_material] ? params[:sort_material] : "id"
+    @sort_material_order =  params[:sort_material_order] ? params[:sort_material_order] : "DESC"
+
+    @sort_labour =  params[:sort_labour] ? params[:sort_labour] : "id"
+    @sort_labour_order =  params[:sort_labour_order] ? params[:sort_labour_order] : "DESC"
   end
 
   # GET /projects/new
@@ -23,7 +28,7 @@ class ProjectsController < ApplicationController
   # POST /projects or /projects.json
   def create
     @project = Project.new(project_params)
-
+    @project.total_expense = 0
     respond_to do |format|
       if @project.save
         format.html { redirect_to @project, notice: "Project was successfully created." }

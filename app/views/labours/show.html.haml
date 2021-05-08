@@ -1,15 +1,14 @@
-%p#notice= notice
+.card
+  .card-body
+    %p
+      %b Weekend date:
+      = @labour.weekend_date
+    %p
+      %b Weekly expense:
+      = @labour.weekly_expense
 
-%p
-  %b Weekend date:
-  = @labour.weekend_date
-%p
-  %b Weekly expense:
-  = @labour.weekly_expense
--# %p
--#   %b Project:
--#   = @labour.project
+  = link_to edit_project_labour_path(@labour.project, @labour), class: "btn btn-warning" do
+    %i.fa.fa-edit
 
-= link_to 'Edit', edit_project_labour_path(@labour.project, @labour)
-\|
-= link_to 'Back', project_path(@labour.project)
+  = link_to project_path(@labour.project), class: "btn btn-primary" do
+    %i.fa.fa-arrow-left

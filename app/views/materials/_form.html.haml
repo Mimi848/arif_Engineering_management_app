@@ -1,6 +1,3 @@
--# -if Rails::VERSION::MAJOR >= 5 && Rails::VERSION::MINOR >= 1
--# = form_with model: [@material.project, @material] do |f|
--# -else
 = form_for [@material.project, @material] do |f|
   -if @material.errors.any?
     #error_explanation
@@ -9,26 +6,22 @@
         - @material.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
+  .form-group
     = f.label :name
-    = f.select :name, Material::MATERIAL_OPTIONS
-  .field
+    = f.select :name, Material::MATERIAL_OPTIONS, required: true, class: "form-control"
+  .form-group
     = f.label :purchase_date
     = f.date_select :purchase_date
-  .field
+  .form-group
     = f.label :per_unit_price
-    = f.text_field :per_unit_price
-  .field
+    = f.text_field :per_unit_price, required: true, class: "form-control"
+  .form-group
     = f.label :quantity
-    = f.number_field :quantity
-  -# .field
-  -#   = f.label :total_cost
-  -#   = f.number_field :total_cost
-  .field
+    = f.number_field :quantity, required: true, class: "form-control"
+  .form-group
     = f.label :category
     = f.text_field :category
-  -# .field
-  -#   = f.label :project
-  -#   = f.text_field :project
+
   .actions
-    = f.submit 'Save'
+    = f.submit class: "btn btn-success" do
+      %i.fa.fa-save

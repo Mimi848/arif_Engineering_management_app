@@ -24,7 +24,9 @@ class LaboursController < ApplicationController
   def create
     @labour = @project.labours.build(labour_params)
 
+    @labour.project.total_expense = @labour.project.total_expense + @labour.weekly_expense
     if @labour.save
+      @labour.project.save
       redirect_to(@labour.project)
     else
       render action: 'new'
@@ -33,7 +35,11 @@ class LaboursController < ApplicationController
 
   # PUT projects/1/labours/1
   def update
-    if @labour.update_attributes(labour_params)
+    @labour.project.total_expense = @labour.project.total_expense - @labour.weekly_expense
+
+    if @labour.update(labour_params)
+      @labour.project.total_expense = @labour.project.total_expense + @labour.weekly_expense
+      @labour.project.save
       redirect_to(@labour.project)
     else
       render action: 'edit'
@@ -42,6 +48,9 @@ class LaboursController < ApplicationController
 
   # DELETE projects/1/labours/1
   def destroy
+
+    @labour.project.total_expense = @labour.project.total_expense - @labour.weekly_expense
+    @labour.project.save
     @labour.destroy
 
     redirect_to @project

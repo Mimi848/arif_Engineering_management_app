@@ -1,0 +1,35 @@
+
+.col-sm
+  %h4.font-weight-bold Labour
+  .btn.btn-link.d-inline
+    = link_to :sort_labour_order => @sort_labour_order == "ASC" ? "DESC" : "ASC"  do
+      -if @sort_labour_order == "ASC"
+        %i.fa.fa-sort-up
+      -else
+        %i.fa.fa-sort-down
+
+  %table.table.border
+    %tr
+      %th
+        = link_to "Date" , :sort_labour => "id"
+      %th
+        = link_to "Expense" , :sort_labour => "weekly_expense"
+      %th
+
+    - @project.labours.order("#{@sort_labour} #{@sort_labour_order}").each do |labour|
+      %tr
+        %td= labour.weekend_date
+        %td= labour.weekly_expense
+        %td
+          = link_to [labour.project, labour], class: "btn btn-info mr-2" do
+            %i.fa.fa-eye
+          = link_to edit_project_labour_path(labour.project, labour), class: "btn btn-warning mr-2" do
+            %i.fa.fa-edit
+          = link_to [labour.project, labour], data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-danger" do
+            %i.fa.fa-trash
+  %h4 Total Labour Sum: #{@project.labours.sum(:weekly_expense)}/-
+  %br
+
+  = link_to  new_project_labour_path(@project), class: "btn btn-primary" do
+    %i.fa.fa-plus
+

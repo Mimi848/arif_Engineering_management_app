@@ -1,5 +1,8 @@
-%h1 New labour
+.card
+  .card-title
+    %h2.text-primary.ml-4.mt-2 New labour
+  .card-body
+    = render 'form'
 
-= render 'form'
-
-= link_to 'Back', project_path(@labour.project)
+  = link_to project_path(@labour.project), class: "btn btn-primary" do
+    %i.fa.fa-arrow-left

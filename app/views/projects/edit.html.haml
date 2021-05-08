@@ -1,7 +1,12 @@
-%h1 Editing project
 
-= render 'form'
+.card
+  .card-title
+    %h2.text-primary.ml-4.mt-2 Editing project
+  .card-body
+    = render 'form'
 
-= link_to 'Show', @project
-\|
-= link_to 'Back', projects_path
+  = link_to @project, class: "btn btn-info" do
+    %i.fa.fa-eye
+  = link_to @project, class: "btn btn-primary" do
+    %i.fa.fa-arrow-left
+

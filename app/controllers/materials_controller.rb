@@ -4,7 +4,8 @@ class MaterialsController < ApplicationController
 
   # GET projects/1/materials
   def index
-    @materials = @project.materials
+    sessionStorage[:sort] = params[:sort]
+    @materials = @project.materials.order(params[:sort])
   end
 
   # GET projects/1/materials/1
@@ -24,7 +25,10 @@ class MaterialsController < ApplicationController
   def create
     @material = @project.materials.build(material_params)
 
+    @material.total_cost = @material.quantity * @material.per_unit_price
+    @material.project.total_expense = @material.project.total_expense + @material.total_cost
     if @material.save
+      @material.project.save
       redirect_to(@material.project)
     else
       render action: 'new'
@@ -33,7 +37,11 @@ class MaterialsController < ApplicationController
 
   # PUT projects/1/materials/1
   def update
-    if @material.update_attributes(material_params)
+    @material.project.total_expense = @material.project.total_expense - @material.total_cost
+
+    if @material.update(material_params)
+      @material.project.total_expense = @material.project.total_expense + @material.total_cost
+      @material.project.save
       redirect_to(@material.project)
     else
       render action: 'edit'
@@ -42,6 +50,8 @@ class MaterialsController < ApplicationController
 
   # DELETE projects/1/materials/1
   def destroy
+    @material.project.total_expense = @material.project.total_expense - @material.total_cost
+    @material.project.save
     @material.destroy
 
     redirect_to @project

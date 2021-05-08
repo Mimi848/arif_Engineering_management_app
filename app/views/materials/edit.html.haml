@@ -1,7 +1,10 @@
-%h1 Editing material
+.card
+  .card-title
+    %h2.text-primary.ml-4.mt-2 Editing material
+  .card-body
+    = render 'form'
 
-= render 'form'
-
-= link_to 'Show', [@material.project, @material]
-\|
-= link_to 'Back',  project_path(@material.project)
+  = link_to [@material.project, @material], class: "btn btn-info" do
+    %i.fa.fa-eye
+  = link_to project_path(@material.project), class: "btn btn-primary" do
+    %i.fa.fa-arrow-left

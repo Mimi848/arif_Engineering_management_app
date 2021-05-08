@@ -1,0 +1,63 @@
+.col-sm
+  %h4.font-weight-bold Materials
+  .btn.btn-link.d-inline
+    = link_to :sort_material => "id" do
+      %i.fa.fa-hourglass
+  .btn.btn-link.d-inline
+    = link_to :sort_material_order => @sort_material_order == "ASC" ? "DESC" : "ASC" do
+      -if @sort_material_order == "ASC"
+        %i.fa.fa-sort-up
+      -else
+        %i.fa.fa-sort-down
+
+  %form.d-inline{:action => '', :method => 'get'}
+    = select_tag :filter_name, options_for_select(Material::MATERIAL_OPTIONS, params[:filter_name]), onchange: "this.form.submit();"
+  .btn.btn-link.d-inline
+    = link_to "clear filter" , :filter_clear => ""
+  %table.table.border
+    %tr
+      %th= link_to "Name" , :sort_material => "name"
+      %th= link_to "Quantity" , :sort_material => "quantity"
+      %th= link_to "Cost" , :sort_material => "total_cost"
+      %th
+
+    - if params[:filter_name]
+      - @project.materials.where(name: params[:filter_name]).order("#{@sort_material} #{@sort_material_order}").each  do |material|
+        %tr
+          %td
+            = material.name
+          %td
+            #{ material.per_unit_price} x #{ material.quantity}
+          %td
+            #{material.total_cost}/-
+          %td
+            = link_to [material.project, material], class: "btn btn-info mr-2" do
+              %i.fa.fa-eye
+            = link_to edit_project_material_path(material.project, material), class: "btn btn-warning mr-2" do
+              %i.fa.fa-edit
+            = link_to [material.project, material], data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-danger" do
+              %i.fa.fa-trash
+    - else
+      - @project.materials.order("#{@sort_material} #{@sort_material_order}").each  do |material|
+        %tr
+          %td
+            = material.name
+          %td
+            #{ material.per_unit_price} x #{ material.quantity}
+          %td
+            #{material.total_cost}/-
+          %td
+            = link_to [material.project, material], class: "btn btn-info mr-2" do
+              %i.fa.fa-eye
+            = link_to edit_project_material_path(material.project, material), class: "btn btn-warning mr-2" do
+              %i.fa.fa-edit
+            = link_to [material.project, material], data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-danger" do
+              %i.fa.fa-trash
+
+  - if params[:filter_name]
+    %h4 Total #{params[:filter_name]} Sum: #{@project.materials.where(name: params[:filter_name]).sum(:total_cost)}/-
+  - else
+    %h4 Total Material Sum: #{@project.materials.sum(:total_cost)}/-
+  %br
+  = link_to new_project_material_path(@project), class: "btn btn-primary" do
+    %i.fa.fa-plus

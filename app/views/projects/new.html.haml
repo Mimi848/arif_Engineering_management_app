@@ -1,5 +1,9 @@
-%h1 New project
+.card
+  .card-title
+    %h2.text-primary.ml-4.mt-2 New project
+  .card-body
+    = render 'form'
 
-= render 'form'
+  = link_to projects_path, class: "btn btn-primary" do
+    %i.fa.fa-arrow-left
 
-= link_to 'Back', projects_path

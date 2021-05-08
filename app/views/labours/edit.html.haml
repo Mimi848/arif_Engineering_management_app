@@ -1,7 +1,11 @@
-%h1 Editing labour
+.card
+  .card-title
+    %h2.text-primary.ml-4.mt-2 Editing labour
+  .card-body
+    = render 'form'
 
-= render 'form'
+  = link_to [@labour.project, @labour], class: "btn btn-info" do
+    %i.fa.fa-eye
+  = link_to project_path(@labour.project), class: "btn btn-primary" do
+    %i.fa.fa-arrow-left
 
-= link_to 'Show', [@labour.project, @labour]
-\|
-= link_to 'Back', project_path(@labour.project)
